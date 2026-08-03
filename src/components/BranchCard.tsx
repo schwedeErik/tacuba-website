@@ -1,14 +1,48 @@
-import type { BranchMessage } from "@/i18n/messages/types";
+"use client";
 
-export function BranchCard({ branch }: { branch: BranchMessage }) {
+import { branchCoordinates } from "@/content/branchCoordinates";
+import { useMessages } from "@/i18n/LanguageProvider";
+import type { BranchMessage } from "@/i18n/messages/types";
+import { getMapsUrl, getMapsUrlFromAddress } from "@/lib/maps";
+
+type BranchCardProps = {
+  branch: BranchMessage;
+  active?: boolean;
+  onSelect?: (id: string) => void;
+};
+
+export function BranchCard({ branch, active = false, onSelect }: BranchCardProps) {
+  const t = useMessages();
+  const coords = branchCoordinates[branch.id];
+
+  function openInMaps() {
+    const url = coords
+      ? getMapsUrl(coords.lat, coords.lng, branch.name)
+      : getMapsUrlFromAddress(branch.name, branch.address);
+    window.open(url, "_blank", "noopener,noreferrer");
+  }
+
   return (
-    <article className="flex h-full flex-col border border-line bg-white p-6 transition hover:border-teal/50">
-      <h3 className="font-display text-xl font-semibold text-navy" id={branch.id}>
-        {branch.name}
-      </h3>
-      <p className="mt-3 text-sm leading-relaxed text-ink-muted">
-        {branch.address}
-      </p>
+    <article
+      id={branch.id}
+      className={`flex h-full scroll-mt-28 flex-col border bg-white p-6 transition ${
+        active
+          ? "border-teal shadow-[0_0_0_1px_rgba(31,138,122,0.35)]"
+          : "border-line hover:border-teal/50"
+      }`}
+    >
+      <button
+        type="button"
+        className="w-full text-left"
+        onClick={() => onSelect?.(branch.id)}
+      >
+        <h3 className="font-display text-xl font-semibold text-navy">
+          {branch.name}
+        </h3>
+        <p className="mt-3 text-sm leading-relaxed text-ink-muted">
+          {branch.address}
+        </p>
+      </button>
       <ul className="mt-3 space-y-1 text-sm font-medium text-navy">
         {branch.phones.map((phone) => (
           <li key={phone}>
@@ -30,6 +64,13 @@ export function BranchCard({ branch }: { branch: BranchMessage }) {
           </li>
         ))}
       </ul>
+      <button
+        type="button"
+        onClick={openInMaps}
+        className="mt-5 inline-flex items-center justify-center rounded-md bg-teal px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-teal-dark"
+      >
+        {t.branchesPage.directions}
+      </button>
     </article>
   );
 }

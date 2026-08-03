@@ -118,6 +118,12 @@ export const es: Messages = {
     locationsTitle: "Nuestras ubicaciones",
     locationsDescription:
       "Horarios, teléfonos y servicios disponibles en cada planta y sucursal.",
+    mapEyebrow: "Mapa",
+    mapTitle: "Encuentre su sucursal",
+    mapDescription:
+      "Seleccione un marcador o una tarjeta para ver la ubicación en el mapa.",
+    mapLabel: "Mapa de sucursales TACUBA en Oaxaca",
+    directions: "Abrir en Mapas",
   },
   promotionsPage: {
     breadcrumb: "Promociones",

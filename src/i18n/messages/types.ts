@@ -106,6 +106,11 @@ export type Messages = {
     description: string;
     locationsTitle: string;
     locationsDescription: string;
+    mapEyebrow: string;
+    mapTitle: string;
+    mapDescription: string;
+    mapLabel: string;
+    directions: string;
   };
   promotionsPage: {
     breadcrumb: string;

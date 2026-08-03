@@ -117,6 +117,12 @@ export const en: Messages = {
     locationsTitle: "Our locations",
     locationsDescription:
       "Hours, phone numbers, and services available at each plant and branch.",
+    mapEyebrow: "Map",
+    mapTitle: "Find your location",
+    mapDescription:
+      "Select a marker or a card to see the location on the map.",
+    mapLabel: "Map of TACUBA locations in Oaxaca",
+    directions: "Open in Maps",
   },
   promotionsPage: {
     breadcrumb: "Promotions",
