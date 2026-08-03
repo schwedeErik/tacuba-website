@@ -3,14 +3,15 @@ import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
 import { Section, SectionHeader } from "@/components/Section";
 import { promotions } from "@/content/promotions";
-import { pageMetadata } from "@/lib/seo";
+import { withBasePath } from "@/lib/paths";
+import { defaultOgImage, pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   title: "Promociones y Monedero TACUBA",
   description:
     "Acumule puntos con el Monedero TACUBA, disfrute beneficios de cumpleaños y conozca las promociones vigentes de tintorería en Oaxaca.",
   path: "/promociones",
-  image: "/images/mosaic-monedero.png",
+  image: defaultOgImage,
 });
 
 export default function PromocionesPage() {
@@ -39,7 +40,7 @@ export default function PromocionesPage() {
               <div className="relative aspect-[4/3] overflow-hidden bg-mist-deep">
                 {promo.image && (
                   <Image
-                    src={promo.image}
+                    src={withBasePath(promo.image)}
                     alt={promo.title}
                     fill
                     className="object-cover"

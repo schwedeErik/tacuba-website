@@ -5,7 +5,7 @@ import { Header } from "@/components/Header";
 import { JsonLd } from "@/components/JsonLd";
 import { company } from "@/content/company";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/jsonld";
-import { siteKeywords, siteUrl } from "@/lib/seo";
+import { defaultOgImage, siteKeywords, siteUrl } from "@/lib/seo";
 import "./globals.css";
 
 const fraunces = Fraunces({
@@ -45,10 +45,11 @@ export const metadata: Metadata = {
     description: company.description,
     images: [
       {
-        url: "/images/servicio.jpg",
-        width: 1700,
-        height: 1100,
-        alt: `${company.name} — cuidado profesional de prendas en Oaxaca`,
+        url: defaultOgImage,
+        width: 1200,
+        height: 630,
+        alt: `${company.name} — tintorería en Oaxaca`,
+        type: "image/jpeg",
       },
     ],
   },
@@ -56,7 +57,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${company.shortName} | Tintorería en Oaxaca`,
     description: company.description,
-    images: ["/images/servicio.jpg"],
+    images: [defaultOgImage],
   },
   robots: {
     index: true,

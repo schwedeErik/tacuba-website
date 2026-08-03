@@ -3,14 +3,15 @@ import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
 import { Section, SectionHeader } from "@/components/Section";
 import { company } from "@/content/company";
-import { pageMetadata } from "@/lib/seo";
+import { withBasePath } from "@/lib/paths";
+import { defaultOgImage, pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   title: "Bolsa de trabajo",
   description:
     "Vacantes en Tintorería TACUBA: ayudante general y atención en mostrador. Postúlese y únase al equipo líder tintorero de Oaxaca.",
   path: "/empleo",
-  image: "/images/empleo-mostrador.jpg",
+  image: defaultOgImage,
 });
 
 const roles = [
@@ -47,7 +48,7 @@ export default function EmpleoPage() {
             <article key={role.title} className="overflow-hidden border border-line bg-white">
               <div className="relative aspect-[5/4] bg-mist-deep">
                 <Image
-                  src={role.image}
+                  src={withBasePath(role.image)}
                   alt={role.title}
                   fill
                   className="object-cover"

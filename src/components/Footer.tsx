@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { company, footerLinks, navLinks } from "@/content/company";
+import { withBasePath } from "@/lib/paths";
 
 export function Footer() {
   return (
@@ -9,7 +10,7 @@ export function Footer() {
         <div>
           <div className="mb-4 flex items-center gap-3">
             <Image
-              src="/images/logo.png"
+              src={withBasePath("/images/logo.png")}
               alt="Logo Tintorería TACUBA"
               width={64}
               height={44}

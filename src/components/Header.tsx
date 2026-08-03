@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { company, navLinks } from "@/content/company";
+import { withBasePath } from "@/lib/paths";
 
 export function Header() {
   const pathname = usePathname();
@@ -34,7 +35,7 @@ export function Header() {
           onClick={() => setOpen(false)}
         >
           <Image
-            src="/images/logo.png"
+            src={withBasePath("/images/logo.png")}
             alt="Logo Tintorería TACUBA"
             width={72}
             height={50}

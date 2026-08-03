@@ -7,13 +7,15 @@ import { TestimonialSlider } from "@/components/TestimonialSlider";
 import { company } from "@/content/company";
 import { featuredServices } from "@/content/services";
 import { testimonials } from "@/content/testimonials";
-import { pageMetadata } from "@/lib/seo";
+import { withBasePath } from "@/lib/paths";
+import { defaultOgImage, pageMetadata } from "@/lib/seo";
 
 export const metadata = {
   ...pageMetadata({
     title: "Tintorería en Oaxaca",
     description: `${company.headline}. ${company.description} ${company.tagline}.`,
     path: "/",
+    image: defaultOgImage,
   }),
   title: {
     absolute: `${company.shortName} | Tintorería en Oaxaca`,
@@ -109,7 +111,7 @@ export default function HomePage() {
             >
               <div className="relative aspect-[16/10] overflow-hidden bg-mist-deep">
                 <Image
-                  src={item.image}
+                  src={withBasePath(item.image)}
                   alt={`${item.title} — Tintorería TACUBA`}
                   fill
                   className="object-cover transition duration-700 group-hover:scale-105"

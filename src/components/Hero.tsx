@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { withBasePath } from "@/lib/paths";
 
 type HeroProps = {
   brand: string;
@@ -21,7 +22,7 @@ export function Hero({
     <section className="relative isolate min-h-[88vh] overflow-hidden text-white">
       <div
         className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: `url(${imageSrc})` }}
+        style={{ backgroundImage: `url(${withBasePath(imageSrc)})` }}
         aria-hidden
       />
       <div

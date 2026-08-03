@@ -2,14 +2,15 @@ import Image from "next/image";
 import { PageHero } from "@/components/PageHero";
 import { Section, SectionHeader } from "@/components/Section";
 import { company } from "@/content/company";
-import { pageMetadata } from "@/lib/seo";
+import { withBasePath } from "@/lib/paths";
+import { defaultOgImage, pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   title: "Acerca de nosotros",
   description:
     "Conozca la historia, misión, visión e innovaciones de Tintorería TACUBA: más de 60 años como empresa líder tintorera en Oaxaca.",
   path: "/acerca-de-nosotros",
-  image: "/images/mosaic-innovaciones.png",
+  image: defaultOgImage,
 });
 
 export default function AcercaPage() {
@@ -31,7 +32,7 @@ export default function AcercaPage() {
           </div>
           <div className="relative aspect-[4/3] overflow-hidden bg-mist-deep">
             <Image
-              src="/images/mosaic-innovaciones.png"
+              src={withBasePath("/images/mosaic-innovaciones.png")}
               alt="Tintorería TACUBA"
               fill
               className="object-cover"
@@ -72,7 +73,7 @@ export default function AcercaPage() {
           </div>
           <div className="relative aspect-[4/3] overflow-hidden bg-mist-deep">
             <Image
-              src="/images/institucional.png"
+              src={withBasePath("/images/institucional.png")}
               alt="Lavandería institucional TACUBA"
               fill
               className="object-cover"

@@ -2,14 +2,14 @@ import { BranchCard } from "@/components/BranchCard";
 import { PageHero } from "@/components/PageHero";
 import { Section, SectionHeader } from "@/components/Section";
 import { branches } from "@/content/branches";
-import { pageMetadata } from "@/lib/seo";
+import { defaultOgImage, pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   title: "Sucursales en Oaxaca",
   description:
     "Encuentre Tintorería TACUBA cerca de usted: Santa Rosa, Centro, San Sebastián, Violetas, Universidad y Xoxo. Teléfonos, horarios y servicio a domicilio.",
   path: "/sucursales",
-  image: "/images/mosaic-sucursales.png",
+  image: defaultOgImage,
 });
 
 export default function SucursalesPage() {
