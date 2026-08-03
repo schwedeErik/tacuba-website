@@ -1,6 +1,6 @@
-import type { Branch } from "@/content/branches";
+import type { BranchMessage } from "@/i18n/messages/types";
 
-export function BranchCard({ branch }: { branch: Branch }) {
+export function BranchCard({ branch }: { branch: BranchMessage }) {
   return (
     <article className="flex h-full flex-col border border-line bg-white p-6 transition hover:border-teal/50">
       <h3 className="font-display text-xl font-semibold text-navy" id={branch.id}>

@@ -4,13 +4,25 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { company, navLinks } from "@/content/company";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { company } from "@/content/company";
+import { useMessages } from "@/i18n/LanguageProvider";
 import { withBasePath } from "@/lib/paths";
 
 export function Header() {
   const pathname = usePathname();
+  const t = useMessages();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
+  const navLinks = [
+    { href: "/", label: t.nav.home },
+    { href: "/servicios", label: t.nav.services },
+    { href: "/sucursales", label: t.nav.branches },
+    { href: "/promociones", label: t.nav.promotions },
+    { href: "/empleo", label: t.nav.jobs },
+    { href: "/contacto", label: t.nav.contact },
+  ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -27,7 +39,7 @@ export function Header() {
           : "border-b border-transparent bg-white/80 backdrop-blur"
       }`}
     >
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3 md:px-8">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-5 py-3 md:px-8">
         <Link
           href="/"
           className="flex items-center gap-3"
@@ -36,7 +48,7 @@ export function Header() {
         >
           <Image
             src={withBasePath("/images/logo.png")}
-            alt="Logo Tintorería TACUBA"
+            alt={t.common.brandAlt}
             width={72}
             height={50}
             className="h-10 w-auto"
@@ -67,17 +79,23 @@ export function Header() {
               </Link>
             );
           })}
+          <div className="ml-2">
+            <LanguageSwitcher />
+          </div>
         </nav>
 
-        <button
-          type="button"
-          className="inline-flex items-center justify-center rounded-md border border-line px-3 py-2 text-sm font-medium text-navy lg:hidden"
-          aria-expanded={open}
-          aria-controls="mobile-nav"
-          onClick={() => setOpen((v) => !v)}
-        >
-          {open ? "Cerrar" : "Menú"}
-        </button>
+        <div className="flex items-center gap-2 lg:hidden">
+          <LanguageSwitcher />
+          <button
+            type="button"
+            className="inline-flex items-center justify-center rounded-md border border-line px-3 py-2 text-sm font-medium text-navy"
+            aria-expanded={open}
+            aria-controls="mobile-nav"
+            onClick={() => setOpen((v) => !v)}
+          >
+            {open ? t.nav.close : t.nav.menu}
+          </button>
+        </div>
       </div>
 
       {open && (

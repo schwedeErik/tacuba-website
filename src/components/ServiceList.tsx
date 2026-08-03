@@ -1,18 +1,21 @@
+"use client";
+
 import Link from "next/link";
-import type { Service } from "@/content/services";
+import type { ServiceMessage } from "@/i18n/messages/types";
+import { useMessages } from "@/i18n/LanguageProvider";
 
 type ServiceListProps = {
-  services: Service[];
+  services: ServiceMessage[];
   compact?: boolean;
 };
 
 export function ServiceList({ services, compact = false }: ServiceListProps) {
+  const t = useMessages();
+
   return (
     <ul
       className={`grid gap-6 ${
-        compact
-          ? "sm:grid-cols-2 lg:grid-cols-3"
-          : "md:grid-cols-2"
+        compact ? "sm:grid-cols-2 lg:grid-cols-3" : "md:grid-cols-2"
       }`}
     >
       {services.map((service) => (
@@ -41,7 +44,7 @@ export function ServiceList({ services, compact = false }: ServiceListProps) {
               href={`/servicios#${service.id}`}
               className="mt-3 inline-flex text-sm font-semibold text-teal transition hover:text-teal-dark"
             >
-              Ver detalle
+              {t.common.viewDetails}
             </Link>
           )}
         </li>

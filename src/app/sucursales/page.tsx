@@ -1,7 +1,4 @@
-import { BranchCard } from "@/components/BranchCard";
-import { PageHero } from "@/components/PageHero";
-import { Section, SectionHeader } from "@/components/Section";
-import { branches } from "@/content/branches";
+import { SucursalesPageContent } from "@/components/pages/SucursalesPageContent";
 import { defaultOgImage, pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
@@ -13,24 +10,5 @@ export const metadata = pageMetadata({
 });
 
 export default function SucursalesPage() {
-  return (
-    <>
-      <PageHero
-        breadcrumb="Sucursales"
-        title="Sucursales"
-        description="Seis puntos de atención con servicio a domicilio. Encuentre la sucursal más cercana."
-      />
-      <Section tone="mist">
-        <SectionHeader
-          title="Nuestras ubicaciones"
-          description="Horarios, teléfonos y servicios disponibles en cada planta y sucursal."
-        />
-        <div className="grid gap-6 md:grid-cols-2">
-          {branches.map((branch) => (
-            <BranchCard key={branch.id} branch={branch} />
-          ))}
-        </div>
-      </Section>
-    </>
-  );
+  return <SucursalesPageContent />;
 }

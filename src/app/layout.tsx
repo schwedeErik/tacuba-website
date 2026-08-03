@@ -4,6 +4,7 @@ import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { JsonLd } from "@/components/JsonLd";
 import { company } from "@/content/company";
+import { LanguageProvider } from "@/i18n/LanguageProvider";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/jsonld";
 import { defaultOgImage, siteKeywords, siteUrl } from "@/lib/seo";
 import "./globals.css";
@@ -85,10 +86,12 @@ export default function RootLayout({
   return (
     <html lang="es" className={`${fraunces.variable} ${manrope.variable} h-full`}>
       <body className="flex min-h-full flex-col antialiased" suppressHydrationWarning>
-        <JsonLd data={[organizationJsonLd(), websiteJsonLd()]} />
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <LanguageProvider>
+          <JsonLd data={[organizationJsonLd(), websiteJsonLd()]} />
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </LanguageProvider>
       </body>
     </html>
   );

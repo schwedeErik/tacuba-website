@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useMessages } from "@/i18n/LanguageProvider";
 
 type PageHeroProps = {
   title: string;
@@ -7,13 +10,15 @@ type PageHeroProps = {
 };
 
 export function PageHero({ title, description, breadcrumb }: PageHeroProps) {
+  const t = useMessages();
+
   return (
     <div className="border-b border-line bg-navy text-white">
       <div className="mx-auto max-w-6xl px-5 py-14 md:px-8 md:py-16">
         {breadcrumb && (
           <p className="mb-3 text-sm text-white/60">
             <Link href="/" className="transition hover:text-white">
-              Inicio
+              {t.nav.home}
             </Link>
             <span className="mx-2">/</span>
             <span>{breadcrumb}</span>
