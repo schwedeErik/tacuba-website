@@ -67,7 +67,7 @@ export function BranchCard({ branch, active = false, onSelect }: BranchCardProps
       <button
         type="button"
         onClick={openInMaps}
-        className="mt-5 inline-flex items-center justify-center rounded-md bg-teal px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-teal-dark"
+        className="mt-auto pt-5 inline-flex w-full items-center justify-center rounded-md bg-teal px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-teal-dark"
       >
         {t.branchesPage.directions}
       </button>
