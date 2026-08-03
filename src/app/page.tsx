@@ -1,69 +1,167 @@
 import Image from "next/image";
+import Link from "next/link";
+import { Hero } from "@/components/Hero";
+import { Section, SectionHeader } from "@/components/Section";
+import { ServiceList } from "@/components/ServiceList";
+import { TestimonialSlider } from "@/components/TestimonialSlider";
+import { company } from "@/content/company";
+import { featuredServices } from "@/content/services";
+import { testimonials } from "@/content/testimonials";
+import { pageMetadata } from "@/lib/seo";
 
-export default function Home() {
+export const metadata = {
+  ...pageMetadata({
+    title: "Tintorería en Oaxaca",
+    description: `${company.headline}. ${company.description} ${company.tagline}.`,
+    path: "/",
+  }),
+  title: {
+    absolute: `${company.shortName} | Tintorería en Oaxaca`,
+  },
+};
+const pathways = [
+  {
+    href: "/sucursales",
+    title: "Sucursales",
+    description: "Seis puntos de atención en Oaxaca con servicio a domicilio.",
+    image: "/images/mosaic-sucursales.png",
+  },
+  {
+    href: "/promociones",
+    title: "Promociones",
+    description: "Monedero TACUBA, beneficios de cumpleaños y ofertas vigentes.",
+    image: "/images/mosaic-monedero.png",
+  },
+  {
+    href: "/servicios#domicilio",
+    title: "Servicio a domicilio",
+    description: "No batalles: nosotros lo hacemos por ti.",
+    image: "/images/servicio.jpg",
+  },
+  {
+    href: "/acerca-de-nosotros#innovaciones",
+    title: "Lavandería institucional",
+    description: company.institutional,
+    image: "/images/institucional.png",
+  },
+];
+
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
+    <>
+      <Hero
+        brand={company.shortName}
+        title={company.headline}
+        subtitle={`“${company.tagline}”`}
+        imageSrc="/images/servicio.jpg"
+        primaryCta={{ href: "/servicios", label: "Ver servicios" }}
+        secondaryCta={{ href: "/sucursales", label: "Encontrar sucursal" }}
+      />
+
+      <Section tone="white">
+        <div className="grid items-end gap-10 md:grid-cols-[1.2fr_0.8fr]">
+          <div>
+            <SectionHeader
+              eyebrow={company.years}
+              title="Empresa líder en el ramo tintorero"
+              description={company.description}
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          </div>
+          <ul className="space-y-3 border-l border-line pl-6">
+            {company.specialties.map((item) => (
+              <li key={item} className="font-display text-lg text-navy">
+                {item}
+              </li>
+            ))}
+          </ul>
         </div>
-      </main>
-    </div>
+      </Section>
+
+      <Section tone="mist">
+        <SectionHeader
+          eyebrow="Servicios"
+          title="Nuestros servicios"
+          description="TACUBA le brinda diversos servicios para el cuidado de sus prendas, blancos, cortinas, pieles y mucho más."
+        />
+        <ServiceList services={featuredServices} compact />
+        <div className="mt-10">
+          <Link
+            href="/servicios"
+            className="inline-flex items-center rounded-md bg-navy px-5 py-3 text-sm font-semibold text-white transition hover:bg-navy-soft"
+          >
+            Ver todos los servicios
+          </Link>
+        </div>
+      </Section>
+
+      <Section tone="white">
+        <SectionHeader
+          eyebrow="Explore"
+          title="Lo que necesita, con claridad"
+          description="Encuentre sucursales, promociones y servicios institucionales sin rodeos."
+        />
+        <div className="grid gap-8 sm:grid-cols-2">
+          {pathways.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="group block overflow-hidden"
+            >
+              <div className="relative aspect-[16/10] overflow-hidden bg-mist-deep">
+                <Image
+                  src={item.image}
+                  alt={`${item.title} — Tintorería TACUBA`}
+                  fill
+                  className="object-cover transition duration-700 group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </div>
+              <h3 className="mt-4 font-display text-2xl font-semibold text-navy transition group-hover:text-teal">
+                {item.title}
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-ink-muted md:text-base">
+                {item.description}
+              </p>
+            </Link>
+          ))}
+        </div>
+      </Section>
+
+      <Section tone="mist">
+        <SectionHeader
+          eyebrow="Opiniones"
+          title="Nuestros clientes opinan"
+        />
+        <TestimonialSlider items={testimonials} />
+      </Section>
+
+      <Section tone="navy">
+        <div className="flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
+          <div className="max-w-xl">
+            <h2 className="font-display text-3xl font-semibold text-white md:text-4xl">
+              Visítenos en cualquiera de nuestras sucursales
+            </h2>
+            <p className="mt-3 text-white/75">
+              Seis sucursales en Oaxaca con servicio a domicilio. Estamos listos
+              para cuidar sus prendas.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <Link
+              href="/sucursales"
+              className="inline-flex rounded-md bg-teal px-5 py-3 text-sm font-semibold text-white transition hover:bg-teal-dark"
+            >
+              Ver sucursales
+            </Link>
+            <Link
+              href="/contacto"
+              className="inline-flex rounded-md border border-white/30 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+            >
+              Contacto
+            </Link>
+          </div>
+        </div>
+      </Section>
+    </>
   );
 }
