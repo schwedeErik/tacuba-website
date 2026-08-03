@@ -52,14 +52,15 @@ body {
   line-height: 1.6;
 }
 
-h1,
-h2,
-h3,
-h4 {
-  font-family: var(--font-fraunces), Georgia, serif;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-  color: var(--navy);
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-fraunces), Georgia, serif;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
 }
 
 a {

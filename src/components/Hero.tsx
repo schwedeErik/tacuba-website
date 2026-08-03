@@ -35,7 +35,7 @@ export function Hero({
         <p className="animate-fade-up font-display text-5xl font-semibold tracking-tight text-white sm:text-6xl md:text-7xl lg:text-8xl">
           {brand}
         </p>
-        <h1 className="animate-fade-up delay-1 mt-5 max-w-2xl font-display text-2xl font-medium leading-snug text-white/95 sm:text-3xl md:text-4xl">
+        <h1 className="animate-fade-up delay-1 mt-5 max-w-2xl font-display text-2xl font-medium leading-snug text-white sm:text-3xl md:text-4xl">
           {title}
         </h1>
         <p className="animate-fade-up delay-2 mt-4 max-w-xl text-base text-white/80 sm:text-lg">
