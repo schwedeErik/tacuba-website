@@ -64,13 +64,15 @@ export function BranchCard({ branch, active = false, onSelect }: BranchCardProps
           </li>
         ))}
       </ul>
-      <button
-        type="button"
-        onClick={openInMaps}
-        className="mt-auto pt-5 inline-flex w-full items-center justify-center rounded-md bg-teal px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-teal-dark"
-      >
-        {t.branchesPage.directions}
-      </button>
+      <div className="mt-auto pt-6">
+        <button
+          type="button"
+          onClick={openInMaps}
+          className="flex w-full items-center justify-center rounded-md bg-teal px-4 py-3 text-center text-sm font-semibold leading-none text-white transition hover:bg-teal-dark"
+        >
+          {t.branchesPage.directions}
+        </button>
+      </div>
     </article>
   );
 }
